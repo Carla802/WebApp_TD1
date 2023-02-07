@@ -18,7 +18,19 @@ switch (err.name) {
   }
 ```
 Cela permet de renvoyer dans la requête un objet contenant 
-le message d'erreur, au lieu du message tout court.
+le message d'erreur, au lieu du message tout court. 
+Cela facilite la conversion en json de la réponse de requête reçue par le front-end.
+
+Afin de faciliter les tests d'ajout ou de suppression de location, il est recommandé de diminuer la quantité de locations importées dans la page locations.
+Pour cela, dans le fichier locations.controller du dossier locations, dans la fonction controllerGetAllLocations :
+
+```
+const limit = req.query.limit || 200;
+const offset = req.query.offset || 19300;
+```
+
+En partant du principe que la base de données contient 19418 locations (je n'ai peut-être pas la base de données entière).
+De cette façon, on pourra voir la derniere location créée lorsqu'on en crée une depuis l'application.
 
 ## Pré-requis du front-end
 
@@ -32,11 +44,11 @@ Lancer dans le terminal la commande `npm install`
 
 ## Utiliser l'application
 
-L'application est composée d'une page d'accueil, d'une page log in et register. 
+L'application est composée d'une page d'accueil, d'une page Log in et Register. 
 
-Elle contient également une page affichant toutes les locations. 
+Elle contient également une page affichant toutes les locations, qui sont paginées (20 par pages). 
 
-Et une fois connecté en tant que user, une page settings permettant de se déconnecter.
+Et une fois connecté en tant que user, une page Settings permet de se déconnecter.
 
 ## User stories validées 
 
@@ -52,6 +64,7 @@ US4: En tant qu'utilisateur connecté, on peut créer une nouvelle location en c
 
 US5: En tant qu'utilisateur connecté, on peut modifier une location existante en cliquant sur le bouton "Edit"
 
-US6: En tant qu'utilisateur connecté, on peut supprimer une location existante en cliquant sur le bouton "Delete"
+US6: En tant qu'utilisateur connecté, on peut supprimer une location existante en cliquant sur le bouton "Delete".
+En revanche, il faut refresh la page afin que la location n'apparaisse plus dans la liste, même si elle a bien été supprimée de la base de données.
 
 
