@@ -1,5 +1,4 @@
-import { fail, redirect } from '@sveltejs/kit';
-import * as api from '$lib/api.js';
+import {fail, redirect} from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ locals }) {
@@ -11,20 +10,30 @@ export const actions = {
 	default: async ({ cookies, request }) => {
 		const data = await request.formData();
 
-		const body = await api.post('users/login', {
-			user: {
-				email: data.get('email'),
-				password: data.get('password')
+		const user = {
+			username: data.get('username'),
+			password: data.get('password')
+		};
+
+		const body = await fetch('http://localhost:3000/users/login',{
+			method:'POST',
+			headers:{
+				'Content-Type':'application/json'
+			},
+			body:JSON.stringify(user)
+		}).then(res => {
+			if(res.ok) {
+				return res.json();
+			}
+			else {
+				return res;
 			}
 		});
-
-		if (body.errors) {
-			return fail(401, body);
+		if (body.status && body.status != 201) {
+			return fail(body.status, { err: body.statusText});
 		}
-
-		const value = btoa(JSON.stringify(body.user));
+		const value = body.jwt;
 		cookies.set('jwt', value, { path: '/' });
-
 		throw redirect(307, '/');
 	}
 };

@@ -1,17 +1,5 @@
 import { redirect, fail } from '@sveltejs/kit';
 
-/** @type {import('./$types').PageServerLoad} */
-export async function load({ locals, params }) {
-	if (!locals.user) throw redirect(302, `/login`);
-	const body = await fetch(`http://localhost:3000/locations/${params.slug}`,{
-		method:'GET',
-		headers:{
-			'Authorization': `Bearer ${locals.user}`
-		}
-	}).then(res => res.json());
-	return { body };
-}
-
 /** @type {import('./$types').Actions} */
 export const actions = {
 	default: async ({ locals, params, request }) => {
@@ -30,8 +18,8 @@ export const actions = {
 			year: data.get('year')
 		};
 
-		const body = await fetch(`http://localhost:3000/locations/${params.slug}`,{
-			method:'PATCH',
+		const body = await fetch(`http://localhost:3000/locations/`,{
+			method:'POST',
 			headers:{
 				'Content-Type':'application/json',
 				'Authorization': `Bearer ${locals.user}`

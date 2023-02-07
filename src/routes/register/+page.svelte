@@ -1,25 +1,24 @@
 <script>
 	import { enhance } from '$app/forms';
-	import ListErrors from '$lib/ListErrors.svelte';
 
 	/** @type {import('./$types').ActionData} */
 	export let form;
 </script>
 
 <svelte:head>
-	<title>Sign up • Conduit</title>
+	<title>Register • Web App</title>
 </svelte:head>
 
 <div class="auth-page">
 	<div class="container page">
 		<div class="row">
 			<div class="col-md-6 offset-md-3 col-xs-12">
-				<h1 class="text-xs-center">Sign up</h1>
+				<h1 class="text-xs-center">Register</h1>
 				<p class="text-xs-center">
 					<a href="/login">Have an account?</a>
 				</p>
 
-				<ListErrors errors={form?.errors} />
+				{#if form?.err}<p class="error-messages">{form.err}</p>{/if}
 
 				<form use:enhance method="POST">
 					<fieldset class="form-group">
@@ -28,16 +27,7 @@
 							name="username"
 							type="text"
 							required
-							placeholder="Your Name"
-						/>
-					</fieldset>
-					<fieldset class="form-group">
-						<input
-							class="form-control form-control-lg"
-							name="email"
-							type="email"
-							required
-							placeholder="Email"
+							placeholder="Username"
 						/>
 					</fieldset>
 					<fieldset class="form-group">
@@ -49,7 +39,7 @@
 							placeholder="Password"
 						/>
 					</fieldset>
-					<button class="btn btn-lg btn-primary pull-xs-right">Sign up</button>
+					<button class="btn btn-lg btn-primary pull-xs-right">Register</button>
 				</form>
 			</div>
 		</div>
