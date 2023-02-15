@@ -21,7 +21,7 @@ export const actions = {
     delete: async ({locals, request}) => {
         const form = await request.formData();
         const id = form.get('id');
-        const body = await fetch(`http://localhost:3000/locations/${id}`,{
+        const body = await fetch(`https://web-app-back.onrender.com/locations/${id}`,{
             method:'DELETE',
             headers:{
                 'Authorization': `Bearer ${locals.user}`

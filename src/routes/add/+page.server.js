@@ -18,7 +18,7 @@ export const actions = {
 			year: data.get('year')
 		};
 
-		const body = await fetch(`http://localhost:3000/locations/`,{
+		const body = await fetch(`https://web-app-back.onrender.com/locations`,{
 			method:'POST',
 			headers:{
 				'Content-Type':'application/json',

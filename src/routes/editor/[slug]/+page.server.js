@@ -3,7 +3,7 @@ import { redirect, fail } from '@sveltejs/kit';
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ locals, params }) {
 	if (!locals.user) throw redirect(302, `/login`);
-	const body = await fetch(`http://localhost:3000/locations/${params.slug}`,{
+	const body = await fetch(`https://web-app-back.onrender.com/locations/${params.slug}`,{
 		method:'GET',
 		headers:{
 			'Authorization': `Bearer ${locals.user}`

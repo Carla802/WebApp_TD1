@@ -16,7 +16,7 @@ export const actions = {
 			password: data.get('password')
 		};
 
-		const body = await fetch('http://localhost:3000/users/register',{
+		const body = await fetch('https://web-app-back.onrender.com/users/register',{
 			method:'POST',
 			headers:{
 				'Content-Type':'application/json'
