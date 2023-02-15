@@ -5,7 +5,7 @@ import { invalidate } from '$app/navigation';
 
 export async function load({ locals }) {
     const user = locals.user;
-    const body = await fetch('http://localhost:3000/locations/',{
+    const body = await fetch('https://web-app-back.onrender.com/locations/',{
         method:'GET',
         headers:{
             'Authorization': `Bearer ${locals.user}`

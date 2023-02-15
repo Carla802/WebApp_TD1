@@ -30,7 +30,7 @@ export const actions = {
 			year: data.get('year')
 		};
 
-		const body = await fetch(`http://localhost:3000/locations/${params.slug}`,{
+		const body = await fetch(`https://web-app-back.onrender.com/locations/${params.slug}`,{
 			method:'PATCH',
 			headers:{
 				'Content-Type':'application/json',
