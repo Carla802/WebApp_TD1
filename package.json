@@ -12,7 +12,7 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-vercel": "^1.0.0",
+		"@sveltejs/adapter-vercel": "^1.0.6",
 		"@sveltejs/kit": "^1.0.0",
 		"marked": "^4.2.1",
 		"prettier": "^2.7.1",
@@ -23,6 +23,7 @@
 	},
 	"dependencies": {
 		"flowbite-svelte": "^0.29.12",
+		"pnpm": "^7.27.0",
 		"svelte-modals": "^1.2.1"
 	}
 }
